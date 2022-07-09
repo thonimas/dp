@@ -1,0 +1,28 @@
+{
+  "name": "0520",
+  "description": "0520",
+  "keywords": [
+    ""
+  ],
+  "env": {
+    "PROTOCOL": {
+      "description": "PROTOCOL",
+      "value": "vless",
+      "required": true
+    },
+    "UUID": {
+      "description": "ID",
+      "value": "",
+      "required": false
+    },
+    "WS_PATH": {
+      "description": "websocket path",
+      "value": "/ray",
+      "required": true
+    }
+  },
+  "stack": "container",
+  "features": [
+    "runtime-dyno-metadata"
+  ]
+}

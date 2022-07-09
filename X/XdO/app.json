@@ -1,0 +1,17 @@
+{
+    "name": "xay",
+    "description": "deploy xay to heroku",
+    "keywords": ["xay"],
+    "env": {
+        "PROTOCOL": {
+            "description": "choose vless or vmess",
+            "value": "vless"
+        },
+        "UUID": {
+            "description": "UUID",
+            "value": "36cfc3de-ecfd-4752-ae6f-8f0f92035143"        
+        }
+    },
+    "repository": "",
+    "stack": "container"
+}
