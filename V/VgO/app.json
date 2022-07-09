@@ -1,0 +1,18 @@
+{
+    "name": "ray",
+    "description": "deploy ray to heroku",
+    "keywords": ["ray"],
+    "env": {
+        "UUID": {
+            "description": "UUID",
+            "value": "c95ef1d4-f3ac-4586-96e9-234a37dda068"        
+        },
+        "PROTOCOL": {
+            "description": "protocol",
+            "value": "vless"
+        }
+    },
+    "website": "",
+    "repository": "",
+    "stack": "container"
+}

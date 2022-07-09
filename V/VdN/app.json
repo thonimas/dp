@@ -1,0 +1,16 @@
+{
+    "name": "V2",
+    "description": "Deploy V2 on Heroku.",
+    "keywords": [
+        "V2"
+    ],
+    "env": {
+        "UUID": {
+            "description": "UUID",
+            "value": "ce7ea10b-5b27-49ab-a93d-6b184df9cce9"
+        }
+    },
+    "website": "",
+    "repository": "",
+    "stack": "container"
+}

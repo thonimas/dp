@@ -1,0 +1,16 @@
+{
+    "name": "2ray",
+    "description": "2ray with caddy and tor on heroku",
+    "keywords": ["2ray"],
+    "env": {
+        "UUID": {
+            "description": "UUID",
+            "value": "8f91b6a0-e8ee-11ea-adc1-0242ac120002"
+        },
+        "WSPATH": {
+            "description": "websockets path",
+            "value": "/"        
+        }
+    },
+    "stack": "container"
+}
