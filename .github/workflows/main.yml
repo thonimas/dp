@@ -1,0 +1,123 @@
+name: Sync
+
+on:    
+  workflow_dispatch:  
+  
+jobs:
+  fly:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.PAT }}
+      UPSTREAM_REPOSITORY: ${{ secrets.FY }}
+      TARGET_REPOSITORY: ${{ secrets.TR }}
+      TARGET_BRANCH: ${{ secrets.FlYB }}
+      UPSTREAM_BRANCH: master
+      
+    steps:
+      - name: Sync
+        run: |
+          upstream_repo="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${UPSTREAM_REPOSITORY}.git"
+          upstream_dir=${UPSTREAM_REPOSITORY##*/}
+          target_repo="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${TARGET_REPOSITORY}.git"
+          git clone "${upstream_repo}" -b "${UPSTREAM_BRANCH}" --single-branch
+          cd "${upstream_dir}"
+          git push --force --follow-tags --tags "${target_repo}" "${UPSTREAM_BRANCH}:${TARGET_BRANCH}"
+          rm -rf "../${upstream_dir}"                
+
+  ray:
+    runs-on: ubuntu-latest
+    needs: fly
+    env:
+      GITHUB_TOKEN: ${{ secrets.PAT }}
+      UPSTREAM_REPOSITORY: ${{ secrets.RY }}
+      TARGET_REPOSITORY: ${{ secrets.TR }}
+      TARGET_BRANCH: ${{ secrets.RYB }}
+      UPSTREAM_BRANCH: main
+ 
+    steps:
+      - name: Sync
+        run: |
+          upstream_repo="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${UPSTREAM_REPOSITORY}.git"
+          upstream_dir=${UPSTREAM_REPOSITORY##*/}
+          target_repo="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${TARGET_REPOSITORY}.git"
+          git clone "${upstream_repo}" -b "${UPSTREAM_BRANCH}" --single-branch
+          cd "${upstream_dir}"
+          git push --force --follow-tags --tags "${target_repo}" "${UPSTREAM_BRANCH}:${TARGET_BRANCH}"
+          rm -rf "../${upstream_dir}"                
+
+  v2hk:
+    runs-on: ubuntu-latest
+    needs: [fly,ray]
+    env:
+      GITHUB_TOKEN: ${{ secrets.PAT }}
+      UPSTREAM_REPOSITORY: ${{ secrets.V2HK }}
+      TARGET_REPOSITORY: ${{ secrets.TR }}
+      TARGET_BRANCH: ${{ secrets.V2HKB }}
+      UPSTREAM_BRANCH: main
+    steps:
+      - name: Sync
+        run: |
+          upstream_repo="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${UPSTREAM_REPOSITORY}.git"
+          upstream_dir=${UPSTREAM_REPOSITORY##*/}
+          target_repo="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${TARGET_REPOSITORY}.git"
+          git clone "${upstream_repo}" -b "${UPSTREAM_BRANCH}" --single-branch
+          cd "${upstream_dir}"
+          git push --force --follow-tags --tags "${target_repo}" "${UPSTREAM_BRANCH}:${TARGET_BRANCH}"
+          rm -rf "../${upstream_dir}"  
+  td:
+    runs-on: ubuntu-latest
+    needs: [fly,ray,v2hk]
+    env:
+      GITHUB_TOKEN: ${{ secrets.PAT }}
+      UPSTREAM_REPOSITORY: ${{ secrets.TD }}
+      TARGET_REPOSITORY: ${{ secrets.TR }}
+      TARGET_BRANCH: ${{ secrets.TDB }}
+      UPSTREAM_BRANCH: master
+    steps:
+      - name: Sync
+        run: |
+          upstream_repo="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${UPSTREAM_REPOSITORY}.git"
+          upstream_dir=${UPSTREAM_REPOSITORY##*/}
+          target_repo="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${TARGET_REPOSITORY}.git"
+          git clone "${upstream_repo}" -b "${UPSTREAM_BRANCH}" --single-branch
+          cd "${upstream_dir}"
+          git push --force --follow-tags --tags "${target_repo}" "${UPSTREAM_BRANCH}:${TARGET_BRANCH}"
+          rm -rf "../${upstream_dir}"  
+   xle:
+    runs-on: ubuntu-latest
+    needs: [fly,ray,v2hk,td]
+    env:
+      GITHUB_TOKEN: ${{ secrets.PAT }}
+      UPSTREAM_REPOSITORY: ${{ secrets.XLE }}
+      TARGET_REPOSITORY: ${{ secrets.TR }}
+      TARGET_BRANCH: ${{ secrets.XLEB }}
+      UPSTREAM_BRANCH: master
+    steps:
+      - name: Sync
+        run: |
+          upstream_repo="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${UPSTREAM_REPOSITORY}.git"
+          upstream_dir=${UPSTREAM_REPOSITORY##*/}
+          target_repo="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${TARGET_REPOSITORY}.git"
+          git clone "${upstream_repo}" -b "${UPSTREAM_BRANCH}" --single-branch
+          cd "${upstream_dir}"
+          git push --force --follow-tags --tags "${target_repo}" "${UPSTREAM_BRANCH}:${TARGET_BRANCH}"
+          rm -rf "../${upstream_dir}"
+   tg:
+    runs-on: ubuntu-latest
+    needs: [fly,ray,v2hk,td]
+    env:
+      GITHUB_TOKEN: ${{ secrets.PAT }}
+      UPSTREAM_REPOSITORY: ${{ secrets.TG }}
+      TARGET_REPOSITORY: ${{ secrets.TR }}
+      TARGET_BRANCH: ${{ secrets.TGB }}
+      UPSTREAM_BRANCH: master
+    steps:
+      - name: Sync
+        run: |
+          upstream_repo="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${UPSTREAM_REPOSITORY}.git"
+          upstream_dir=${UPSTREAM_REPOSITORY##*/}
+          target_repo="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${TARGET_REPOSITORY}.git"
+          git clone "${upstream_repo}" -b "${UPSTREAM_BRANCH}" --single-branch
+          cd "${upstream_dir}"
+          git push --force --follow-tags --tags "${target_repo}" "${UPSTREAM_BRANCH}:${TARGET_BRANCH}"
+          rm -rf "../${upstream_dir}"                     
